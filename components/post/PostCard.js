@@ -12,6 +12,7 @@ function PostCard({ postObj }) {
         <Card.Text>Category: {postObj.category_id.label}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">Posted on: {postObj.publication_date}</Card.Footer>
+      <Button type="button" className="m-2">View Comments</Button>
       <Link href={`/posts/${postObj.id}`} passHref>
         <Button type="button" className="m-2">Edit Post</Button>
       </Link>
