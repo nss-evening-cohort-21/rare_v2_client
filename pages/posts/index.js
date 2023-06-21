@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import PostCard from '../../components/post/PostCard';
-import getPosts from '../../utils/data/postData';
+import { getPosts } from '../../utils/data/postData';
 
 function Home() {
   const [posts, setPosts] = useState([]);
