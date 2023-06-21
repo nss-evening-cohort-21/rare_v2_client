@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { getCommentsByPost } from '../../utils/data/postData';
 
 export default function CommentCard({ commentObj }) {
-  const [, setComments] = useState([]);
-  const router = useRouter();
-  const { id } = router.query;
-
-  useEffect(() => {
-    getCommentsByPost(id).then(setComments);
-    console.warn(commentObj);
-  }, [id]);
-
   return (
     <div>
       <Card className="commentCard">
