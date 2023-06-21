@@ -7,8 +7,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { firebase } from '../client';
 import { checkRareUser } from '../auth';
+import { firebase } from '../client';
 
 const AuthContext = createContext();
 

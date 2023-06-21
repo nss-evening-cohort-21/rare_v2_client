@@ -30,7 +30,7 @@ function RegisterForm({ user, updateUser }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, createdOn: date };
-    registerRareUser(payload).then(() => updateUser(user.uid));
+    registerRareUser(payload, user.uid).then(() => updateUser(user.uid));
   };
 
   return (
