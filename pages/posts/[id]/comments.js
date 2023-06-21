@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from 'react-bootstrap';
 import CommentCard from '../../../components/comment/CommentCard';
 import { getCommentsByPost } from '../../../utils/data/postData';
 
@@ -12,6 +13,9 @@ export default function ViewComments() {
     getCommentsByPost(id).then(setComments);
   }, [id]);
 
+  const handleClick = () => {
+    router.push(`/posts/${id}`);
+  };
   return (
     <div>
       <h2>Comments</h2>
@@ -23,6 +27,8 @@ export default function ViewComments() {
           <CommentCard commentObj={comment} />
         </section>
       ))}
+      <hr />
+      <Button variant="outline-dark" className="m-2" onClick={handleClick}>Return To Post</Button>
     </div>
   );
 }
