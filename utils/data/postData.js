@@ -7,4 +7,11 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getPosts;
+const getCommentsByPost = (postId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${postId}/comments`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export { getPosts, getCommentsByPost };
