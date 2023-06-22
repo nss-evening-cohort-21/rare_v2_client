@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 export default function CommentCard({ commentObj }) {
+  console.warn(commentObj);
   return (
     <div>
       <Card className="commentCard">
