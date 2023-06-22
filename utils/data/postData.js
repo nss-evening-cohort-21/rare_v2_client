@@ -7,6 +7,13 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getCommentsByPost = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${id}/comments`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getSinglePost = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts/${id}`, {
     method: 'GET',
@@ -19,4 +26,4 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getPosts, getSinglePost };
+export { getPosts, getSinglePost, getCommentsByPost };
