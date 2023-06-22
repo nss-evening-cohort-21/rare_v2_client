@@ -14,7 +14,7 @@ const signOut = () => {
 const checkRareUser = (uid) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/checkuser`, {
     method: 'POST',
-    BODY: JSON.stringify({
+    body: JSON.stringify({
       uid,
     }),
     headers: {

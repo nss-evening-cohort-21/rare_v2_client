@@ -5,19 +5,25 @@ import Form from 'react-bootstrap/Form';
 import { registerRareUser } from '../utils/auth';
 
 function RegisterForm({ user, updateUser }) {
+  const date = new Date();
+  // Get year, month, and day from the date
+  const year = date.toLocaleString('default', { year: 'numeric' });
+  const month = date.toLocaleString('default', { month: '2-digit' });
+  const day = date.toLocaleString('default', { day: '2-digit' });
+  // Generate yyyy-mm-dd date string
+  const registrationDate = `${year}-${month}-${day}`;
+
   const [formInput, setFormInput] = useState({
     firstName: '',
     lastName: '',
     bio: '',
     profileImageUrl: '',
     email: '',
-    createdOn: '',
+    createdOn: registrationDate,
     active: true,
     isStaff: false,
     uid: user.uid,
   });
-
-  const date = new Date();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +35,9 @@ function RegisterForm({ user, updateUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...formInput, createdOn: date };
-    registerRareUser(payload, user.uid).then(() => updateUser(user.uid));
+    registerRareUser(formInput).then(() => updateUser(user.uid));
+
+    console.warn(formInput);
   };
 
   return (
