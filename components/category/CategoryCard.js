@@ -10,7 +10,7 @@ const CategoryCard = ({
   onUpdate,
 }) => {
   const deleteCategory = () => {
-    if (window.confirm('Delete Category')) {
+    if (window.confirm('Delete Category?')) {
       deleteSingleCategory(id).then(() => onUpdate());
     }
   };

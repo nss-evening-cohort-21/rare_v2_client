@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CategoryCard from '../../components/category/CategoryCard';
+import CategoryCard from '../../components/category/categoryCard';
 import { getCategories } from '../../utils/data/categoryData';
 
 function Home() {
