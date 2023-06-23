@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Button, Form, FloatingLabel } from 'react-bootstrap';
-import { createComment } from '../../utils/data/commentData';
+import { createComment, updateComment } from '../../utils/data/commentData';
 import { useAuth } from '../../utils/context/authContext';
 import { getPosts } from '../../utils/data/postData';
 
@@ -52,15 +52,24 @@ export default function CommentForm({ obj, postObj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const comment = {
-      content: currentComment.content,
-      createdOn: createdDate,
-      postId: postObj.id,
-      authorId: user.id,
-    };
-    createComment(comment).then(() => router.push(`/posts/${id}/comments`));
-    console.warn(comment);
-    console.warn(user);
+    if (obj.id) {
+      const commentUpdate = {
+        id: obj.id,
+        content: currentComment.content,
+        createdOn: createdDate,
+        postId: postObj.id,
+        authorId: user.id,
+      };
+      updateComment(commentUpdate).then(() => router.replace(`/posts/${id}/comments`));
+    } else {
+      const comment = {
+        content: currentComment.content,
+        createdOn: createdDate,
+        postId: postObj.id,
+        authorId: user.id,
+      };
+      createComment(comment).then(() => router.push(`/posts/${id}/comments`));
+    }
   };
 
   return (

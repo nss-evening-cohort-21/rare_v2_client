@@ -1,8 +1,21 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { deleteComment } from '../../utils/data/commentData';
 
-export default function CommentCard({ commentObj }) {
+export default function CommentCard({
+  commentObj,
+  id,
+  onUpdate,
+}) {
+  const router = useRouter();
+
+  const deleteThisComment = () => {
+    if (window.confirm('Delete this comment?')) {
+      deleteComment(id).then(() => onUpdate());
+    }
+  };
   console.warn(commentObj);
   return (
     <div>
@@ -19,7 +32,8 @@ export default function CommentCard({ commentObj }) {
               <footer className="blockquote-footer">
                 {commentObj.author_id.first_name} {commentObj.author_id.last_name}
                 <br />
-                <button type="button">Delete</button>
+                <button type="button" onClick={() => router.replace(`comments/edit/${id}`)}>Edit</button>
+                <button type="button" onClick={deleteThisComment}>Delete</button>
               </footer>
             </blockquote>
           </Card.Body>
@@ -39,4 +53,6 @@ CommentCard.propTypes = {
       last_name: PropTypes.string,
     }),
   }).isRequired,
+  id: PropTypes.number.isRequired,
+  onUpdate: PropTypes.func.isRequired,
 };
