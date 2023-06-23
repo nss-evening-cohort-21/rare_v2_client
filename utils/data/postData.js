@@ -26,4 +26,19 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export { getPosts, getSinglePost, getCommentsByPost };
+const createPost = (post) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export {
+  getPosts, createPost, getCommentsByPost, getSinglePost,
+};
