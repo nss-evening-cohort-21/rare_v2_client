@@ -13,8 +13,9 @@ function PostCard({ postObj }) {
       </Card.Body>
       <Card.Footer className="text-muted">Posted on: {postObj.publication_date}</Card.Footer>
       <Link href={`/posts/${postObj.id}`} passHref>
-        <Button type="button" className="m-2">Edit Post</Button>
+        <Button type="button" className="m-2">View Post</Button>
       </Link>
+      <Button type="button" className="m-2">Edit Post</Button>
       <Button type="button" className="m-2">Delete Post</Button>
     </Card>
   );
