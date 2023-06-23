@@ -15,10 +15,6 @@ export default function ViewPost() {
     getSinglePost(id).then(setPostDetails);
   }, [id]);
 
-  const handleClick = () => {
-    router.push(`/posts/${id}/comments`);
-  };
-
   return (
     <>
       <Head>
@@ -37,7 +33,6 @@ export default function ViewPost() {
           <p className="PD-desc">Posted on: {postDetails.publication_date || ''}
           </p>
           <hr />
-          <Button variant="outline-dark" className="m-2" onClick={handleClick}>View Comments</Button>
           <Link passHref href="/posts">
             <Button variant="outline-dark" className="m-2">Return To Posts</Button>
           </Link>
