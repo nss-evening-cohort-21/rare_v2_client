@@ -25,13 +25,10 @@ export default function CommentForm({ obj, postObj }) {
   const year = date.toLocaleString('default', { year: 'numeric' });
   const month = date.toLocaleString('default', { month: '2-digit' });
   const day = date.toLocaleString('default', { day: '2-digit' });
-  const hour = date.toLocaleTimeString('default', { hour: 'numeric' });
-  const minute = date.toLocaleTimeString('default', { minute: 'numeric' });
-  const second = date.toLocaleTimeString('default', { second: 'numeric' });
+  const time = date.toLocaleTimeString('en-US', { hour12: false });
   // Generate yyyy-mm-dd date string
   const yearDate = `${year}-${month}-${day}`;
-  const hourDate = `${hour}:${minute}:${second}`;
-  const createdDate = `${yearDate} ${hourDate}`;
+  const createdDate = `${yearDate} ${time}`;
 
   useEffect(() => {
     getPosts(obj.id).then(setPosts);
