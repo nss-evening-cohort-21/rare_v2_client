@@ -10,13 +10,28 @@ const initialState = {
   content: '',
   createdOn: '',
   postId: '',
+  authorId: '',
 };
 
-export default function CommentForm({ obj }) {
+export default function CommentForm({ obj, postObj }) {
   const [currentComment, setCurrentComment] = useState(initialState);
   const [, setPosts] = useState({});
   const router = useRouter();
   const { user } = useAuth();
+  const { id } = router.query;
+
+  const date = new Date();
+  // Get year, month, and day from the date
+  const year = date.toLocaleString('default', { year: 'numeric' });
+  const month = date.toLocaleString('default', { month: '2-digit' });
+  const day = date.toLocaleString('default', { day: '2-digit' });
+  const hour = date.toLocaleTimeString('default', { hour: 'numeric' });
+  const minute = date.toLocaleTimeString('default', { minute: 'numeric' });
+  const second = date.toLocaleTimeString('default', { second: 'numeric' });
+  // Generate yyyy-mm-dd date string
+  const yearDate = `${year}-${month}-${day}`;
+  const hourDate = `${hour}:${minute}:${second}`;
+  const createdDate = `${yearDate} ${hourDate}`;
 
   useEffect(() => {
     getPosts(obj.id).then(setPosts);
@@ -42,12 +57,13 @@ export default function CommentForm({ obj }) {
     e.preventDefault();
     const comment = {
       content: currentComment.content,
-      createdOn: new Date().toLocaleString(),
-      postId: currentComment.post_id,
-      authorId: user.uid,
+      createdOn: createdDate,
+      postId: postObj.id,
+      authorId: user.id,
     };
-    createComment(comment).then(() => router.push('/posts'));
+    createComment(comment).then(() => router.push(`/posts/${id}/comments`));
     console.warn(comment);
+    console.warn(user);
   };
 
   return (

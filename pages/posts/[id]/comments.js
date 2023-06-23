@@ -19,7 +19,7 @@ export default function ViewComments() {
   return (
     <div>
       <h2>Comments</h2>
-      <Button onClick={() => { router.push('/comments/new'); }}>Add a Comment</Button>
+      <Button onClick={() => { router.push(`/posts/${id}/comments/new`); }}>Add a Comment</Button>
       {comments.map((comment) => (
         <section
           key={`comment--${comment.id}`}
