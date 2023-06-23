@@ -14,6 +14,7 @@ const CategoryCard = ({
       deleteCategory(id).then(() => onUpdate());
     }
   };
+
   return (
     <Card className="text-center">
       <Card.Header>{label}</Card.Header>

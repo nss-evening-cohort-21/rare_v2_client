@@ -6,9 +6,15 @@ import { getCategories } from '../../utils/data/categoryData';
 
 function Home() {
   const [categories, setCategories] = useState([]);
-  useEffect(() => {
+
+  const getAllCategories = () => {
     getCategories().then((data) => setCategories(data));
+  };
+
+  useEffect(() => {
+    getAllCategories();
   }, []);
+
   return (
     <article className="categories">
       <Link href="/categories/new" passHref>
@@ -17,7 +23,7 @@ function Home() {
       <h1>Categories</h1>
       {categories.map((category) => (
         <section key={`category--${category.id}`} className="category">
-          <CategoryCard id={category.id} label={category.label} onUpdate={getCategories} />
+          <CategoryCard id={category.id} label={category.label} onUpdate={getAllCategories} />
         </section>
       ))}
     </article>
