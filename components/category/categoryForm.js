@@ -36,15 +36,13 @@ function CategoryForm({ categoryObj }) {
     if (categoryObj.id) {
       const updatedCategory = {
         id: categoryObj.id,
-        label: categoryObj.label,
+        label: currentCategory.label,
       };
-
       updateCategory(updatedCategory).then(() => router.push('/categories'));
     } else {
       const category = {
         label: currentCategory.label,
       };
-
       createCategory(category).then(() => router.push('/categories'));
     }
   };

@@ -15,7 +15,7 @@ export default function EditCategory() {
 
   return (
     <>
-      <CategoryForm eventObj={editCategory} />
+      <CategoryForm categoryObj={editCategory} />
     </>
   );
 }
