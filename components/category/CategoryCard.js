@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { deleteSingleCategory } from '../../utils/data/categoryData';
+import { deleteCategory } from '../../utils/data/categoryData';
 
 const CategoryCard = ({
   id,
   label,
   onUpdate,
 }) => {
-  const deleteCategory = () => {
+  const deleteThisCategory = () => {
     if (window.confirm('Delete Category?')) {
-      deleteSingleCategory(id).then(() => onUpdate());
+      deleteCategory(id).then(() => onUpdate());
     }
   };
   return (
@@ -20,7 +20,7 @@ const CategoryCard = ({
       <Link href={`/categories/edit/${id}`} passHref>
         <Button variant="outline-dark" className="m-2">EDIT</Button>
       </Link>
-      <Button variant="outline-dark" className="m-2" onClick={deleteCategory}>
+      <Button variant="outline-dark" className="m-2" onClick={deleteThisCategory}>
         DELETE
       </Button>
     </Card>
