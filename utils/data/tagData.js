@@ -41,8 +41,7 @@ const deleteSingleTag = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(resolve)
     .catch(reject);
 });
 
@@ -54,7 +53,6 @@ const updateTag = (payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });

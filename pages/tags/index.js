@@ -7,8 +7,12 @@ import { getTags } from '../../utils/data/tagData';
 function Home() {
   const [tags, setTags] = useState([]);
 
-  useEffect(() => {
+  const getAllTags = () => {
     getTags().then((data) => setTags(data));
+  };
+
+  useEffect(() => {
+    getAllTags();
   }, []);
 
   return (
@@ -20,7 +24,7 @@ function Home() {
         <h1>Tags</h1>
         {tags.map((tag) => (
           <section key={`tag--${tag.id}`} className="tag">
-            <TagCard id={tag.id} label={tag.label} onUpdate={getTags} />
+            <TagCard id={tag.id} label={tag.label} onUpdate={getAllTags} />
           </section>
         ))}
       </article>
