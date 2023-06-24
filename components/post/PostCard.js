@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import Link from 'next/link';
+import { useAuth } from '../../utils/context/authContext';
 import { deletePost } from '../../utils/data/postData';
 
 function PostCard({ postObj, onUpdate }) {
+  const user = useAuth();
+
   const deleteSinglePost = () => {
     if (window.confirm(`Delete ${postObj.title} post?`)) {
       deletePost(postObj.id).then(() => onUpdate());
@@ -23,9 +26,11 @@ function PostCard({ postObj, onUpdate }) {
         <Button type="button" className="m-2">View Post</Button>
       </Link>
       <Link href={`/posts/edit/${postObj.id}`} passHref>
-        <Button type="button" className="m-2">Edit Post</Button>
+        {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2">Edit Post</Button>) : ''}
       </Link>
-      <Button type="button" className="m-2" onClick={deleteSinglePost}>Delete Post</Button>
+      <div>
+        {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2" onClick={deleteSinglePost}>Delete Post</Button>) : ''}
+      </div>
     </Card>
   );
 }
@@ -34,6 +39,7 @@ PostCard.propTypes = {
   postObj: PropTypes.shape({
     id: PropTypes.number,
     rare_user_id: PropTypes.shape({
+      uid: PropTypes.string,
       first_name: PropTypes.string,
       last_name: PropTypes.string,
     }),
