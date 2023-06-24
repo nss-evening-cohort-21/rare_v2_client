@@ -2,13 +2,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
+  const { user } = useAuth();
+
+  console.warn(user);
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <Link passHref href="/">
-          <a className="navbar-brand">
+          <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
             HOME
           </a>
         </Link>
@@ -28,7 +33,7 @@ export default function NavBar() {
             </li>
 
             <li className="nav-item">
-              <Link passHref href="/posts?rare_user_id=">
+              <Link passHref href="/myposts">
                 <a className="nav-link">
                   My Posts
                 </a>
