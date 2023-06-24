@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import CategoryCard from '../../components/category/categoryCard';
+import CategoryCard from '../../components/category/CategoryCard';
 import { getCategories } from '../../utils/data/categoryData';
 
 function Home() {
