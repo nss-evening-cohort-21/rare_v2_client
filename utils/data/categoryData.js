@@ -30,15 +30,14 @@ const getSingleCategory = (id) => new Promise((resolve, reject) => {
     .then((data) => resolve(data)) // will resolve a single object
     .catch(reject);
 });
-const deleteSingleCategory = (id) => new Promise((resolve, reject) => {
+const deleteCategory = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/categories/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(resolve)
     .catch(reject);
 });
 const updateCategory = (payload) => new Promise((resolve, reject) => {
@@ -49,11 +48,10 @@ const updateCategory = (payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
     .then(resolve)
     .catch(reject);
 });
 
 export {
-  getCategories, createCategory, getSingleCategory, updateCategory, deleteSingleCategory,
+  getCategories, createCategory, getSingleCategory, updateCategory, deleteCategory,
 };

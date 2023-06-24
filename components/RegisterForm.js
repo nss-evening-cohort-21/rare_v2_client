@@ -13,6 +13,7 @@ function RegisterForm({ user, updateUser }) {
   // Generate yyyy-mm-dd date string
   const registrationDate = `${year}-${month}-${day}`;
 
+  // set the state of the form input with blank or pre-set values
   const [formInput, setFormInput] = useState({
     firstName: '',
     lastName: '',
@@ -36,8 +37,6 @@ function RegisterForm({ user, updateUser }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerRareUser(formInput).then(() => updateUser(user.uid));
-
-    console.warn(formInput);
   };
 
   return (
