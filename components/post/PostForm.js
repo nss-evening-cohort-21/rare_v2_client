@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createPost } from '../../utils/data/postData';
+import { createPost, updatePost } from '../../utils/data/postData';
 import { getCategories } from '../../utils/data/categoryData';
 
 const date = new Date();
@@ -36,7 +36,7 @@ const PostForm = ({ postObj }) => {
       setCurrentPost({
         id: postObj.id,
         rareUserId: postObj.rare_user_id,
-        categoryId: postObj.category_id,
+        categoryId: postObj.category_id?.id,
         title: postObj.title,
         publicationDate: postObj.publication_date,
         imageUrl: postObj.image_url,
@@ -44,6 +44,7 @@ const PostForm = ({ postObj }) => {
         approved: postObj.approved,
       });
     }
+    console.warn(postObj);
   }, [postObj]);
 
   const handleChange = (e) => {
@@ -58,7 +59,18 @@ const PostForm = ({ postObj }) => {
     e.preventDefault();
 
     if (postObj.id) {
-      console.warn(postObj);
+      const updatedPost = {
+        id: currentPost.id,
+        rareUserId: user.id,
+        categoryId: Number(currentPost.categoryId),
+        title: currentPost.title,
+        publicationDate: currentPost.publicationDate,
+        imageUrl: currentPost.imageUrl,
+        content: currentPost.content,
+        approved: Boolean(currentPost.approved),
+      };
+      updatePost(updatedPost)
+        .then(() => router.push('/posts'));
     } else {
       const post = {
         rareUserId: user.id,
@@ -124,6 +136,7 @@ PostForm.propTypes = {
       last_name: PropTypes.string,
     }),
     category_id: PropTypes.shape({
+      id: PropTypes.number,
       label: PropTypes.string,
     }),
     title: PropTypes.string,
