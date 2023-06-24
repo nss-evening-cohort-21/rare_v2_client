@@ -36,7 +36,7 @@ const PostForm = ({ postObj }) => {
       setCurrentPost({
         id: postObj.id,
         rareUserId: postObj.rare_user_id,
-        categoryId: postObj.category_id,
+        categoryId: postObj.category_id?.id,
         title: postObj.title,
         publicationDate: postObj.publication_date,
         imageUrl: postObj.image_url,
@@ -44,6 +44,7 @@ const PostForm = ({ postObj }) => {
         approved: postObj.approved,
       });
     }
+    console.warn(postObj);
   }, [postObj]);
 
   const handleChange = (e) => {
@@ -59,6 +60,7 @@ const PostForm = ({ postObj }) => {
 
     if (postObj.id) {
       const updatedPost = {
+        id: currentPost.id,
         rareUserId: user.id,
         categoryId: Number(currentPost.categoryId),
         title: currentPost.title,
@@ -134,6 +136,7 @@ PostForm.propTypes = {
       last_name: PropTypes.string,
     }),
     category_id: PropTypes.shape({
+      id: PropTypes.number,
       label: PropTypes.string,
     }),
     title: PropTypes.string,
