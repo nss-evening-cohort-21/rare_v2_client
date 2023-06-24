@@ -1,4 +1,4 @@
-import CategoryForm from '../../components/category/categoryForm';
+import CategoryForm from '../../components/category/CategoryForm';
 
 const NewCategory = () => (
   <div>
