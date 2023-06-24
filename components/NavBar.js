@@ -33,7 +33,7 @@ export default function NavBar() {
             </li>
 
             <li className="nav-item">
-              <Link passHref href="/posts/myposts">
+              <Link passHref href="/myposts">
                 <a className="nav-link">
                   My Posts
                 </a>

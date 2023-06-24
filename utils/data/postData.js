@@ -63,7 +63,7 @@ const deletePost = (id) => new Promise((resolve, reject) => {
 });
 
 const getPostsByUserId = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/posts/myposts/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/posts?rare_user_id=${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
