@@ -39,6 +39,18 @@ const createPost = (post) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const updatePost = (post) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getPosts, createPost, getCommentsByPost, getSinglePost,
+  getPosts, createPost, getCommentsByPost, getSinglePost, updatePost,
 };

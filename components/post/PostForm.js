@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import { createPost } from '../../utils/data/postData';
+import { createPost, updatePost } from '../../utils/data/postData';
 import { getCategories } from '../../utils/data/categoryData';
 
 const date = new Date();
@@ -58,7 +58,17 @@ const PostForm = ({ postObj }) => {
     e.preventDefault();
 
     if (postObj.id) {
-      console.warn(postObj);
+      const updatedPost = {
+        rareUserId: user.id,
+        categoryId: Number(currentPost.categoryId),
+        title: currentPost.title,
+        publicationDate: currentPost.publicationDate,
+        imageUrl: currentPost.imageUrl,
+        content: currentPost.content,
+        approved: Boolean(currentPost.approved),
+      };
+      updatePost(updatedPost)
+        .then(() => router.push('/posts'));
     } else {
       const post = {
         rareUserId: user.id,

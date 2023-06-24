@@ -15,7 +15,9 @@ function PostCard({ postObj }) {
       <Link href={`/posts/${postObj.id}`} passHref>
         <Button type="button" className="m-2">View Post</Button>
       </Link>
-      <Button type="button" className="m-2">Edit Post</Button>
+      <Link href={`/posts/edit/${postObj.id}`} passHref>
+        <Button type="button" className="m-2">Edit Post</Button>
+      </Link>
       <Button type="button" className="m-2">Delete Post</Button>
     </Card>
   );
