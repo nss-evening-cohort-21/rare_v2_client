@@ -39,6 +39,18 @@ const createPost = (post) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPostsByUserId = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/myposts/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data)) // will resolve a single object
+    .catch(reject);
+});
+
 export {
-  getPosts, createPost, getCommentsByPost, getSinglePost,
+  getPosts, createPost, getCommentsByPost, getSinglePost, getPostsByUserId,
 };
