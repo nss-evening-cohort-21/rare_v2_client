@@ -9,9 +9,12 @@ export default function ViewComments() {
   const router = useRouter();
   const { id } = router.query;
 
-  useEffect(() => {
+  const getAllComments = () => {
     getCommentsByPost(id).then(setComments);
-  }, [id]);
+  };
+  useEffect(() => {
+    getAllComments();
+  });
 
   const handleClick = () => {
     router.push(`/posts/${id}`);
@@ -25,7 +28,7 @@ export default function ViewComments() {
           key={`comment--${comment.id}`}
           className="comment"
         >
-          <CommentCard commentObj={comment} />
+          <CommentCard commentObj={comment} onUpdate={getAllComments} />
         </section>
       ))}
       <hr />

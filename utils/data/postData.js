@@ -39,6 +39,29 @@ const createPost = (post) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const updatePost = (post) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  })
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const deletePost = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(resolve)
+    .catch(reject);
+});
+
 const getPostsByUserId = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/posts/myposts/${id}`, {
     method: 'GET',
@@ -52,5 +75,5 @@ const getPostsByUserId = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts, createPost, getCommentsByPost, getSinglePost, getPostsByUserId,
+  getPosts, createPost, getCommentsByPost, getSinglePost, updatePost, deletePost, getPostsByUserId,
 };

@@ -28,7 +28,7 @@ function Home() {
         <h3>Posts</h3>
         {posts.map((post) => (
           <section key={`post--${post.id}`} className="posts">
-            <PostCard postObj={post} />
+            <PostCard postObj={post} onUpdate={getAllPosts} />
           </section>
         ))};
       </article>
