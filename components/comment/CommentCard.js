@@ -6,14 +6,13 @@ import { deleteComment } from '../../utils/data/commentData';
 
 export default function CommentCard({
   commentObj,
-  id,
   onUpdate,
 }) {
   const router = useRouter();
 
   const deleteThisComment = () => {
     if (window.confirm('Delete this comment?')) {
-      deleteComment(id).then(() => onUpdate());
+      deleteComment(commentObj.id).then(() => onUpdate());
     }
   };
   console.warn(commentObj);
@@ -32,7 +31,7 @@ export default function CommentCard({
               <footer className="blockquote-footer">
                 {commentObj.author_id.first_name} {commentObj.author_id.last_name}
                 <br />
-                <button type="button" onClick={() => router.replace(`comments/edit/${id}`)}>Edit</button>
+                <button type="button" onClick={() => router.push(`/comments/edit/${commentObj.id}`)}>Edit</button>
                 <button type="button" onClick={deleteThisComment}>Delete</button>
               </footer>
             </blockquote>
@@ -52,7 +51,10 @@ CommentCard.propTypes = {
       first_name: PropTypes.string,
       last_name: PropTypes.string,
     }),
+    post_id: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+    id: PropTypes.number,
   }).isRequired,
-  id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

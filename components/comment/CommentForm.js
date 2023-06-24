@@ -18,7 +18,6 @@ export default function CommentForm({ obj, postObj }) {
   const [, setPosts] = useState({});
   const router = useRouter();
   const { user } = useAuth();
-  const { id } = router.query;
 
   const date = new Date();
   // Get year, month, and day from the date
@@ -57,10 +56,10 @@ export default function CommentForm({ obj, postObj }) {
         id: obj.id,
         content: currentComment.content,
         createdOn: createdDate,
-        postId: postObj.id,
+        postId: currentComment.postId,
         authorId: user.id,
       };
-      updateComment(commentUpdate).then(() => router.replace(`/posts/${id}/comments`));
+      updateComment(commentUpdate).then(() => router.push(`/posts/${obj.post_id}/comments`));
     } else {
       const comment = {
         content: currentComment.content,
@@ -68,7 +67,7 @@ export default function CommentForm({ obj, postObj }) {
         postId: postObj.id,
         authorId: user.id,
       };
-      createComment(comment).then(() => router.push(`/posts/${id}/comments`));
+      createComment(comment).then(() => router.push(`/posts/${postObj.id}/comments`));
     }
   };
 
@@ -102,7 +101,7 @@ CommentForm.propTypes = {
   obj: PropTypes.shape({
     content: PropTypes.string,
     created_on: PropTypes.string,
-    author_id: PropTypes.string,
+    author_id: PropTypes.number,
     post_id: PropTypes.number,
     id: PropTypes.number,
   }),

@@ -6,16 +6,14 @@ import CommentForm from '../../../components/comment/CommentForm';
 export default function EditComment() {
   const [editComment, setEditComment] = useState({});
   const router = useRouter();
-  const { commentId } = router.query;
-  const [postId, setPostId] = useState();
-
+  const { id } = router.query;
+  console.warn(id);
   useEffect(() => {
-    getSingleComment(commentId.id).then(setEditComment);
-    console.warn(editComment);
-    getSingleComment(commentId.id).then((data) => setPostId(data.post_id));
-  }, [commentId]);
+    getSingleComment(id).then(setEditComment);
+    console.warn(id);
+  }, [id]);
 
   return (
-    <CommentForm obj={editComment} commentPostId={postId} />
+    <CommentForm obj={editComment} />
   );
 }
