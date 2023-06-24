@@ -14,7 +14,7 @@ export default function ViewComments() {
   };
   useEffect(() => {
     getAllComments();
-  }, []);
+  });
 
   const handleClick = () => {
     router.push(`/posts/${id}`);
