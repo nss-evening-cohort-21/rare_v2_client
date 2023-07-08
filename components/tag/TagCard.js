@@ -15,14 +15,20 @@ const TagCard = ({
     }
   };
   return (
-    <Card className="text-center">
+    <Card className="text-center tag-card">
       <Card.Header>{label}</Card.Header>
-      <Link href={`/tags/edit/${id}`} passHref>
-        <Button variant="outline-dark" className="m-2">EDIT</Button>
-      </Link>
-      <Button variant="outline-dark" className="m-2" onClick={deleteTag}>
-        DELETE
-      </Button>
+      <div className="btn-group">
+        <div>
+          <Link href={`/tags/edit/${id}`} passHref>
+            <Button variant="outline-dark" className="m-2">EDIT</Button>
+          </Link>
+        </div>
+        <div>
+          <Button variant="outline-dark" className="m-2" onClick={deleteTag}>
+            DELETE
+          </Button>
+        </div>
+      </div>
     </Card>
   );
 };

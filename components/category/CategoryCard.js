@@ -16,14 +16,20 @@ const CategoryCard = ({
   };
 
   return (
-    <Card className="text-center">
+    <Card className="text-center cat-card">
       <Card.Header>{label}</Card.Header>
-      <Link href={`/categories/edit/${id}`} passHref>
-        <Button variant="outline-dark" className="m-2">EDIT</Button>
-      </Link>
-      <Button variant="outline-dark" className="m-2" onClick={deleteThisCategory}>
-        DELETE
-      </Button>
+      <div className="btn-group">
+        <div>
+          <Link href={`/categories/edit/${id}`} passHref>
+            <Button variant="outline-dark" className="m-2">EDIT</Button>
+          </Link>
+        </div>
+        <div>
+          <Button variant="outline-dark" className="m-2" onClick={deleteThisCategory}>
+            DELETE
+          </Button>
+        </div>
+      </div>
     </Card>
   );
 };

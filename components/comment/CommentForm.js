@@ -77,7 +77,7 @@ export default function CommentForm({ obj, postObj }) {
         <Form.Group className="mb-3">
           <FloatingLabel
             controlId="floatingTextarea"
-            label="Content"
+            label="Write comment here"
             className="mb-3"
           >
             <Form.Control

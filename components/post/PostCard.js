@@ -15,21 +15,27 @@ function PostCard({ postObj, onUpdate }) {
   };
 
   return (
-    <Card className="text-center">
+    <Card className="text-center post-card">
       <Card.Header>{postObj.title}</Card.Header>
       <Card.Body>
         <Card.Title>Posted by: {postObj.rare_user_id.first_name} {postObj.rare_user_id.last_name}</Card.Title>
         <Card.Text>Category: {postObj.category_id.label}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">Posted on: {postObj.publication_date}</Card.Footer>
-      <Link href={`/posts/${postObj.id}`} passHref>
-        <Button type="button" className="m-2">View Post</Button>
-      </Link>
-      <Link href={`/posts/edit/${postObj.id}`} passHref>
-        {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2">Edit Post</Button>) : ''}
-      </Link>
-      <div>
-        {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2" onClick={deleteSinglePost}>Delete Post</Button>) : ''}
+      <div className="btn-group">
+        <div>
+          <Link href={`/posts/${postObj.id}`} passHref>
+            <Button type="button" className="m-2">View Post</Button>
+          </Link>
+        </div>
+        <div>
+          <Link href={`/posts/edit/${postObj.id}`} passHref>
+            {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2">Edit Post</Button>) : ''}
+          </Link>
+        </div>
+        <div>
+          {postObj.rare_user_id.uid === user.user.uid ? (<Button type="button" className="m-2" onClick={deleteSinglePost}>Delete Post</Button>) : ''}
+        </div>
       </div>
     </Card>
   );

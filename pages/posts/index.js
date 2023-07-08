@@ -17,13 +17,15 @@ function Home() {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          router.push('/posts/new');
-        }}
-      >
-        Create New Post
-      </Button>
+      <div className="new-post-btn">
+        <Button
+          onClick={() => {
+            router.push('/posts/new');
+          }}
+        >
+          Create New Post
+        </Button>
+      </div>
       <article className="posts">
         <h3>Posts</h3>
         {posts.map((post) => (

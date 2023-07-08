@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { deleteComment } from '../../utils/data/commentData';
 import { useAuth } from '../../utils/context/authContext';
@@ -20,7 +20,7 @@ export default function CommentCard({
   console.warn(commentObj);
   return (
     <div>
-      <Card className="commentCard">
+      <Card className="comment-card">
         <div className="commentContainer">
           <Card.Header>{commentObj.created_on}</Card.Header>
           <Card.Body>
@@ -33,10 +33,16 @@ export default function CommentCard({
               <footer className="blockquote-footer">
                 {commentObj.author_id.first_name} {commentObj.author_id.last_name}
                 <br />
-                {commentObj.author_id.uid === user.uid ? (
-                  <button type="button" onClick={() => router.push(`/comments/edit/${commentObj.id}`)}>Edit</button>) : ''}
-                {commentObj.author_id.uid === user.uid ? (
-                  <button type="button" onClick={deleteThisComment}>Delete</button>) : ''}
+                <div className="btn-group">
+                  <div>
+                    {commentObj.author_id.uid === user.uid ? (
+                      <Button type="button" className="m-2" onClick={() => router.push(`/comments/edit/${commentObj.id}`)}>Edit</Button>) : ''}
+                  </div>
+                  <div>
+                    {commentObj.author_id.uid === user.uid ? (
+                      <Button type="button" className="m-2" onClick={deleteThisComment}>Delete</Button>) : ''}
+                  </div>
+                </div>
               </footer>
             </blockquote>
           </Card.Body>

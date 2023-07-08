@@ -20,7 +20,7 @@ export default function ViewPost() {
   };
 
   return (
-    <>
+    <div className="post-details-page">
       <Head>
         <title> View {postDetails.title} </title>
       </Head>
@@ -46,7 +46,7 @@ export default function ViewPost() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
 
   );
 }
