@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import CategoryForm from '../../components/category/CategoryForm';
 
 const NewCategory = () => (

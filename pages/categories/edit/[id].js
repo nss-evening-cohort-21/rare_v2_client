@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getSingleCategory } from '../../../utils/data/categoryData';
+// eslint-disable-next-line
 import CategoryForm from '../../../components/category/CategoryForm';
 
 export default function EditCategory() {
