@@ -38,6 +38,7 @@ export default function ViewPost() {
           </p>
           <p className="PD-desc">Posted on: {postDetails.publication_date || ''}
           </p>
+          <img src={postDetails.image_url} width="500" alt={postDetails.title} />
           <hr />
           <Button variant="outline-dark" className="m-2" onClick={handleClick}>View Comments</Button>
           <Link passHref href="/posts">

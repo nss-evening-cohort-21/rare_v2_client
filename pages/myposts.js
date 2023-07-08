@@ -33,7 +33,7 @@ function Home() {
           <section key={`post--${post.id}`} className="posts">
             <PostCard postObj={post} />
           </section>
-        ))};
+        ))}
       </article>
     </>
   );
