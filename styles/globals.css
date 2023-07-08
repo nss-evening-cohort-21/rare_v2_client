@@ -18,5 +18,39 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #9ec1a3;
+}
+
+.navbar {
+  background-color: #1f363d;
+}
+.navbar-brand, .nav-link {
+  color: whitesmoke;
+}
+
+.btn {
+  background-color: #40798c;
+  border: none;
+  color: whitesmoke;
+}
+
+.btn:hover {
+  background-color: #70a9a1;
+  border: none;
+  color: #1f363d;
+}
+.post-card, .cat-card, .tag-card, .new-post-btn, .comment-card {
+  margin: 10px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-toggler {
+  background-color: #9ec1a3;
+}
+.post-details-page {
+  margin-top: 20px;
 }
