@@ -13,7 +13,7 @@ export default function NavBar() {
     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <Link passHref href="/">
-          <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
+          <a className="navbar-brand">
             HOME
           </a>
         </Link>

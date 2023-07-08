@@ -3,7 +3,6 @@ import { useAuth } from '../utils/context/authContext';
 
 function Home() {
   const { user } = useAuth();
-  console.warn(user);
 
   return (
     <div
@@ -16,6 +15,8 @@ function Home() {
       }}
     >
       <h1>Hello, {user.first_name}! </h1>
+      <img src={user.profile_image_url} alt="user profile page" />
+      <h3>{user.bio}</h3>
       <p>Click the button below to logout!</p>
       <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
         Sign Out
